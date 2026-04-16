@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Οι 32 Σωζόμενες Τραγωδίες | Lore</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === ΒΑΣΙΚΑ ΣΤΥΛ ΣΕΛΙΔΑΣ (Neo-Brutalism) === */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffd600;
+            background-image: radial-gradient(#111 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            color: #111;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* === HEADER === */
+        header {
+            background: #fff;
+            border: 4px solid #111;
+            box-shadow: 8px 8px 0px #111;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0;
+            color: #00f0ff; /* Cyan */
+            text-shadow: 2px 2px 0px #111;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 5px;
+            color: #111;
+        }
+
+        .logo-box img {
+            max-height: 90px;
+            filter: drop-shadow(2px 2px 0px #111);
+        }
+
+        /* Πλαίσιο Εισαγωγής */
+        .intro-box {
+            background: #fff;
+            border: 4px solid #111;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 6px 6px 0px #111;
+            margin-bottom: 40px;
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* === ACCORDION / COLLAPSIBLES === */
+        .accordion-btn {
+            background-color: #fff;
+            color: #111;
+            cursor: pointer;
+            padding: 20px 25px;
+            width: 100%;
+            border: 4px solid #111;
+            text-align: left;
+            outline: none;
+            font-size: 1.5rem;
+            font-weight: 800;
+            transition: 0.1s;
+            box-shadow: 6px 6px 0px #111;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .accordion-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 2px 2px 0px #111;
+        }
+
+        .accordion-btn.active {
+            box-shadow: 2px 2px 0px #111;
+            transform: translate(4px, 4px);
+        }
+
+        .accordion-btn .icon {
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-btn.active .icon {
+            transform: rotate(180deg);
+        }
+
+        /* Χρώματα Συγγραφέων */
+        .acc-aischylos { background-color: #39ff14; } /* Lime */
+        .acc-sophocles { background-color: #ff007f; color: #fff; } /* Magenta */
+        .acc-euripides { background-color: #ff851b; } /* Orange */
+
+        .accordion-panel {
+            padding: 0 5px;
+            display: none;
+            background-color: transparent;
+            overflow: hidden;
+            margin-bottom: 40px;
+            animation: fadeInPanel 0.3s ease-in-out;
+        }
+
+        @keyframes fadeInPanel {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* === FLASHCARDS === */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 10px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 250px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            border: 4px solid #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        .flip-card-front {
+            background: #fff;
+            box-shadow: 6px 6px 0px #111;
+            color: #111;
+            font-size: 1.4rem;
+            font-weight: 800;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            font-size: 0.95rem;
+            font-weight: 600;
+            box-shadow: -6px 6px 0px #111;
+            color: #111;
+            overflow-y: auto;
+            align-items: flex-start;
+            text-align: left;
+            justify-content: flex-start;
+            background: #fff;
+        }
+
+        /* Προσαρμογή scrollbar για το πίσω μέρος της κάρτας */
+        .flip-card-back::-webkit-scrollbar { width: 6px; }
+        .flip-card-back::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.3); border-radius: 3px; }
+
+        /* Χρώματα για το πίσω μέρος των καρτών ανά συγγραφέα */
+        .panel-aischylos .flip-card-back { background: #eeffcc; }
+        .panel-sophocles .flip-card-back { background: #ffe6f2; }
+        .panel-euripides .flip-card-back { background: #ffe6cc; }
+
+        .note-text {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 10px;
+            font-style: italic;
+        }
+
+        /* Κουμπί Επιστροφής (για μελλοντική χρήση) */
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            background-color: #111;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            border: 3px solid #111;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            transition: all 0.1s;
+        }
+        .back-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px rgba(0,0,0,0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    
+    <!-- Έτοιμο κουμπί για όταν το συνδέσουμε με την αρχική σελίδα -->
+    <a href="index.html" class="back-btn">⬅ Επιστροφή στην Αρχική</a>
+
+    <header>
+        <div class="hero-text">
+            <h1>Οι 32 Σωζόμενες Τραγωδίες</h1>
+            <p>Το απόλυτο checklist της Αρχαιότητας</p>
+        </div>
+        <div class="logo-box">
+            <img src="logo_GR.png" alt="Logo">
+        </div>
+    </header>
+
+    <div class="intro-box">
+        <p class="intro-text">
+            Ο παρών κατάλογος περιλαμβάνει όλες τις σωζόμενες ελληνικές τραγωδίες που παραδίδονται ακέραιες ή σχεδόν ακέραιες. Ο συμβατικός συνολικός αριθμός είναι <strong>32 έργα</strong>: 7 του Αισχύλου, 7 του Σοφοκλή και 18 που αποδίδονται στον Ευριπίδη (περιλαμβάνονται δύο έργα με αμφισβητούμενη πατρότητα, ο <em>Προμηθέας Δεσμώτης</em> και ο <em>Ρήσος</em>). Δεν περιλαμβάνεται ο <em>Κύκλωπας</em>, επειδή είναι σατυρικό δράμα.
+        </p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1. ΑΙΣΧΥΛΟΣ -->
+    <!-- ========================================== -->
+    <button class="accordion-btn acc-aischylos">1. Αισχύλος (7 έργα) <span class="icon">▼</span></button>
+    <div class="accordion-panel panel-aischylos">
+        <div class="intro-box" style="padding: 15px; margin-bottom: 10px; font-size: 0.95rem;">
+            <strong>Γενική σημείωση:</strong> Από τα έργα του Αισχύλου, τα <em>Αγαμέμνων</em>, <em>Χοηφόροι</em> και <em>Ευμενίδες</em> συγκροτούν την <strong>Ορέστεια</strong>, τη μοναδική πλήρως σωζόμενη αρχαία τριλογία.
+        </div>
+        <div class="grid-container">
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Πέρσες</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Παρουσιάζει τη συντριβή των Περσών στη Σαλαμίνα μέσα από το βλέμμα της περσικής αυλής και όχι των Ελλήνων νικητών.</p><p class="note-text">Σημείωση: Είναι η αρχαιότερη σωζόμενη ελληνική τραγωδία (αντλεί το θέμα από πρόσφατη ιστορία, όχι τον μύθο).</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Επτά επί Θήβας</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ετεοκλής οργανώνει την άμυνα της Θήβας απέναντι στον Πολυνείκη. Η σύγκρουση κορυφώνεται με τον αλληλοσκοτωμό των αδελφών.</p><p class="note-text">Σημείωση: Το μόνο σωζόμενο έργο θηβαϊκής τριλογίας (δεν ανήκει στην Ορέστεια).</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ικέτιδες</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Οι Δαναΐδες φτάνουν ως ικέτιδες στο Άργος για να γλιτώσουν από εξαναγκαστικό γάμο με τους Αιγυπτιάδες.</p><p class="note-text">Σημείωση: Το μόνο σωζόμενο μέρος της ομώνυμης τριλογίας.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Αγαμέμνων</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Αγαμέμνονας επιστρέφει από την Τροία μαζί με την Κασσάνδρα, αλλά πέφτει θύμα της εκδίκησης της Κλυταιμνήστρας και του Αίγισθου.</p><p class="note-text">Σημείωση: 1ο έργο της Ορέστειας.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Χοηφόροι</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ορέστης επιστρέφει στο Άργος, συναντά την Ηλέκτρα και δολοφονεί τον Αίγισθο και την Κλυταιμνήστρα (μητροκτονία).</p><p class="note-text">Σημείωση: 2ο έργο της Ορέστειας.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ευμενίδες</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ορέστης, κυνηγημένος από τις Ερινύες, δικάζεται στον Άρειο Πάγο της Αθήνας με την παρέμβαση της Αθηνάς.</p><p class="note-text">Σημείωση: 3ο έργο της Ορέστειας (μετατρέπει την εκδίκηση σε θεσμοθετημένη δικαιοσύνη).</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Προμηθέας Δεσμώτης</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Προμηθέας αλυσοδένεται από τον Δία επειδή χάρισε στους ανθρώπους τη φωτιά. Αναμετρά την εξουσία με την αδάμαστη αντοχή.</p><p class="note-text">Σημείωση: Η πατρότητά του αμφισβητείται από μέρος της νεότερης έρευνας.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 2. ΣΟΦΟΚΛΗΣ -->
+    <!-- ========================================== -->
+    <button class="accordion-btn acc-sophocles">2. Σοφοκλής (7 έργα) <span class="icon">▼</span></button>
+    <div class="accordion-panel panel-sophocles">
+        <div class="grid-container">
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Αίας</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Αίας χάνει τα όπλα του Αχιλλέα, χάνει την κρίση του και εξευτελίζεται. Όταν συνέρχεται, επιλέγει την αυτοκτονία.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Αντιγόνη</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Αντιγόνη παραβαίνει την εντολή του Κρέοντα και θάβει τον αδελφό της Πολυνείκη, υπακούοντας σε ανώτερους άγραφους νόμους.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Τραχίνιαι</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Δηιάνειρα στέλνει στον Ηρακλή έναν χιτώνα με υποτιθέμενο φίλτρο αγάπης, το οποίο αποδεικνύεται θανατηφόρο δηλητήριο.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Οιδίπους Τύραννος</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ψάχνοντας τον αίτιο του λοιμού στη Θήβα, ο Οιδίποδας ανακαλύπτει ότι ο ίδιος είναι ο φονιάς του πατέρα του και σύζυγος της μητέρας του.</p><p class="note-text">Σημείωση: Κλασικό παράδειγμα τραγικής αναγνώρισης και ειρωνείας.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ηλέκτρα</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Ηλέκτρα περιμένει τον Ορέστη και μαζί εκτελούν την εκδίκηση εναντίον της Κλυταιμνήστρας και του Αίγισθου.</p><p class="note-text">Σημείωση: Σοφόκλεια εκδοχή, ανεξάρτητη από την Ορέστεια.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Φιλοκτήτης</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Οι Έλληνες προσπαθούν με δόλο να πάρουν το τόξο του άρρωστου Φιλοκτήτη. Αντιπαραθέτει τη δόλια πολιτική με την ηθική (Νεοπτόλεμος).</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Οιδίπους επί Κολωνώ</div>
+                <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο τυφλός και εξόριστος Οιδίποδας φτάνει στον Κολωνό. Το έργο μετατρέπει τον καταραμένο βασιλιά σε ιερή μορφή προστασίας.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 3. ΕΥΡΙΠΙΔΗΣ -->
+    <!-- ========================================== -->
+    <button class="accordion-btn acc-euripides">3. Ευριπίδης (18 έργα) <span class="icon">▼</span></button>
+    <div class="accordion-panel panel-euripides">
+        <div class="grid-container">
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Άλκηστις</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Άλκηστη προσφέρεται να πεθάνει στη θέση του Άδμητου. Ο Ηρακλής παλεύει με τον θάνατο και την επαναφέρει.</p><p class="note-text">Σημείωση: Παρουσιάστηκε στη θέση του σατυρικού δράματος (happy end).</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Μήδεια</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Προδομένη από τον Ιάσονα, η Μήδεια παίρνει ακραία εκδίκηση φτάνοντας ως τον φόνο της αντιζήλου της και των ίδιων της των παιδιών.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ηρακλείδαι</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Τα παιδιά του Ηρακλή ζητούν άσυλο στην Αθήνα. Το έργο προβάλλει την Αθήνα ως πόλη προστασίας των αδυνάτων.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ιππόλυτος</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Αφροδίτη τιμωρεί τον Ιππόλυτο κάνοντας τη μητριά του, Φαίδρα, να τον ερωτευτεί, γεγονός που οδηγεί στον θάνατό του.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ανδρομάχη</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Ανδρομάχη βρίσκεται αιχμάλωτη στη Θεσσαλία, παγιδευμένη σε εντάσεις, ζήλια και σχεδιαζόμενους φόνους.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Εκάβη</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Από πενθούσα βασίλισσα της Τροίας, μετατρέπεται σε σκληρή τιμωρό για να εκδικηθεί τον δολοφόνο του γιου της.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ικέτιδες</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Μητέρες Αργείων ζητούν από την Αθήνα να εξασφαλίσει τα άταφα σώματα των παιδιών τους.</p><p class="note-text">Σημείωση: Δεν πρέπει να συγχέεται με τις Ικέτιδες του Αισχύλου.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ηλέκτρα</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Ηλέκτρα ζει φτωχικά. Όταν έρχεται ο Ορέστης, σκοτώνουν τη μητέρα τους, αλλά στο τέλος κυριαρχεί η ενοχή.</p><p class="note-text">Σημείωση: Πιο αντιηρωική εκδοχή του μύθου.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ηρακλής μαινόμενος</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ηρακλής σώζει την οικογένειά του, αλλά η Ήρα τον χτυπά με μανία και τους σκοτώνει. Μετά πρέπει να ζήσει με αυτό το βάρος.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Τρωάδες</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Οι αιχμάλωτες γυναίκες της Τροίας περιμένουν τη μοίρα τους. Αποτυπώνει τη φρίκη του πολέμου.</p><p class="note-text">Σημείωση: Από τα εντονότερα αντιπολεμικά κείμενα της αρχαιότητας.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ίων</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Κρέουσα φτάνει στους Δελφούς, όπου μέσω παρανοήσεων αναγνωρίζει τελικά τον χαμένο γιο της, Ίωνα.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ιφιγένεια εν Ταύροις</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Ιφιγένεια (ιέρεια) αναγνωρίζει τον αδελφό της Ορέστη (που προοριζόταν για θυσία) και δραπετεύουν μαζί.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ελένη</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ευριπίδης ανατρέπει τον μύθο: Στην Τροία πήγε ένα είδωλο, η Ελένη ήταν στην Αίγυπτο όπου την βρίσκει ο Μενέλαος.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Φοίνισσαι</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η τελική σύγκρουση του θηβαϊκού οίκου: Αλληλοσφαγή Ετεοκλή-Πολυνείκη και αυτοκτονία της Ιοκάστης.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ορέστης</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Μετά τη μητροκτονία, τα δύο αδέλφια οδηγούνται σε νέα σχέδια βίας από απόγνωση, ώσπου επεμβαίνει θεός.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ιφιγένεια εν Αυλίδι</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Αγαμέμνονας καλεί την κόρη του στην Αυλίδα δήθεν για γάμο, αλλά στην πραγματικότητα για να τη θυσιάσει.</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Βάκχες</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Διόνυσος επιστρέφει στη Θήβα, τιμωρεί την άρνηση του Πενθέα και τον οδηγεί στον διαμελισμό από τις μαινάδες (και τη μητέρα του).</p></div></div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner"><div class="flip-card-front">Ρήσος</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Νυχτερινή επιδρομή στο τρωικό στρατόπεδο και αιφνιδιαστική δολοφονία του Θράκα συμμάχου Ρήσου.</p><p class="note-text">Σημείωση: Αμφισβητούμενη πατρότητα, πολλοί το θεωρούν μεταγενέστερο.</p></div></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Λειτουργία για το άνοιγμα/κλείσιμο των Accordions
+    const accordions = document.querySelectorAll('.accordion-btn');
+    
+    accordions.forEach(acc => {
+        acc.addEventListener('click', function() {
+            // Κλείνουμε όλα τα άλλα αν θέλουμε (προαιρετικό, εδώ τα αφήνουμε ανεξάρτητα)
+            this.classList.toggle('active');
+            
+            const panel = this.nextElementSibling;
+            if (panel.style.display === 'block') {
+                panel.style.display = 'none';
+            } else {
+                panel.style.display = 'block';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

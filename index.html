@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Greek Tragedy Lore | No Cap Drama</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,800;1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* === ΒΑΣΙΚΑ ΣΤΥΛ ΣΕΛΙΔΑΣ (Neo-Brutalism) === */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #ffd600; /* Έντονο κίτρινο φόντο */
+            background-image: radial-gradient(#111 1.5px, transparent 1.5px);
+            background-size: 25px 25px; /* Μοτίβο με τελείες */
+            color: #111;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .main-container {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* === HEADER === */
+        header {
+            background: #fff;
+            border: 4px solid #111;
+            box-shadow: 8px 8px 0px #111;
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin: 0;
+            color: #ff007f; /* Έντονο Magenta */
+            text-shadow: 2px 2px 0px #111;
+            letter-spacing: -1px;
+        }
+
+        .hero-text p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+            color: #111;
+        }
+
+        .logo-box img {
+            max-height: 120px;
+        }
+
+        /* Περιοχή με τα Κουμπιά στον Header */
+        .header-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 5px;
+        }
+
+        /* Κουμπί Recap */
+        .recap-btn {
+            background-color: #00f0ff; /* Έντονο Cyan */
+            color: #111;
+            border: 4px solid #111;
+            box-shadow: 4px 4px 0px #111;
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.1s;
+            text-transform: uppercase;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .recap-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #111;
+        }
+
+        /* Κουμπί για τη Λίστα των 32 Έργων */
+        .list-btn {
+            background-color: #39ff14; /* Έντονο Lime */
+            color: #111;
+            border: 4px solid #111;
+            box-shadow: 4px 4px 0px #111;
+            padding: 10px 25px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.1s;
+            text-transform: uppercase;
+            text-decoration: none; /* Αφαίρεση υπογράμμισης link */
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .youtube-btn {
+            background-color: #ff0000;
+            color: #fff;
+        }
+
+        .list-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #111;
+        }
+
+        /* === ΕΝΟΤΗΤΕΣ (Sections) === */
+        section {
+            background: #fff;
+            border: 4px solid #111;
+            box-shadow: 8px 8px 0px #111;
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+        }
+
+        .cyan-section { background-color: #e0ffff; }
+        .lime-section { background-color: #eeffcc; }
+        .orange-section { background-color: #ffe6cc; }
+        .magenta-section { background-color: #ffe6f2; }
+        .purple-section { background-color: #f5e6ff; }
+
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-top: 0;
+            border-bottom: 4px solid #111;
+            padding-bottom: 8px;
+            display: inline-block;
+            color: #111;
+        }
+
+        /* Πλαίσιο Αρχαίου Κειμένου */
+        .ancient-box {
+            background: #fff;
+            border: 4px solid #111;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 6px 6px 0px #ff007f;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .ancient-text {
+            font-style: italic;
+            font-weight: 600;
+            color: #111;
+            font-size: 1.2rem;
+            border-left: 5px solid #ff007f;
+            padding-left: 20px;
+            margin: 0 0 15px 0;
+            line-height: 1.8;
+        }
+
+        .modern-text {
+            font-size: 1.1rem;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* === FLASHCARDS === */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 35px;
+        }
+
+        .flip-card {
+            background-color: transparent;
+            height: 250px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.is-flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            border: 4px solid #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            box-sizing: border-box;
+        }
+
+        .flip-card-front {
+            background: #fff;
+            box-shadow: 6px 6px 0px #111;
+            color: #111;
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            font-size: 1.05rem;
+            font-weight: 600;
+            box-shadow: -6px 6px 0px #111;
+            color: #111;
+        }
+
+        .bg-lime .flip-card-back { background: #39ff14; }
+        .bg-cyan .flip-card-back { background: #00f0ff; }
+        .bg-magenta .flip-card-back { background: #ff007f; color: #fff; }
+        .bg-purple .flip-card-back { background: #b10dc9; color: #fff; }
+        .bg-orange .flip-card-back { background: #ff851b; color: #fff; }
+
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 15px; padding-left: 30px; position: relative; font-weight: 600; }
+        li::before { content: '⚡'; position: absolute; left: 0; font-size: 1.2rem;}
+
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #111;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 20px;
+            border: 4px solid #111;
+            margin-top: 60px;
+        }
+
+        /* =========================================================
+           === CAROUSEL MODAL (OVERLAY) ΣΤΥΛ === 
+           ========================================================= */
+        .recap-modal {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background-color: #ffd600;
+            background-image: radial-gradient(#111 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            z-index: 99999; 
+        }
+
+        .recap-modal.active { display: block; }
+
+        .close-recap-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #ff007f;
+            color: #fff;
+            border: 3px solid #111;
+            box-shadow: 4px 4px 0px #111;
+            padding: 10px 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 100001;
+            transition: transform 0.1s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .close-recap-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 0px 0px 0px #111;
+        }
+
+        .layout-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .logo-overlay {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 100000;
+            pointer-events: none;
+        }
+
+        .logo-overlay img {
+            max-width: 70px;
+            height: auto;
+            filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        .carousel-modal-container {
+            flex: 1; 
+            overflow: auto;
+            position: relative;
+            scroll-behavior: smooth;
+            display: flex; 
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.4s ease-in-out;
+            width: 100%;
+        }
+
+        .slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        .carousel-modal-container.zoomed { display: block; }
+        .carousel-modal-container.zoomed .slide.active { display: block; height: auto; }
+        .carousel-modal-container.zoomed .slide img {
+            width: 100%; 
+            max-width: 100%;
+            max-height: none;
+            height: auto;
+            object-fit: unset;
+            cursor: auto; 
+        }
+
+        .controls-bar {
+            background-color: #ffd600;
+            border-top: 4px solid #111;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 100000;
+            flex-shrink: 0; 
+        }
+
+        .controls-bar button {
+            background-color: #fff;
+            color: #111;
+            border: 3px solid #111;
+            box-shadow: 4px 4px 0px #111;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.1s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .controls-bar button:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #111;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- === ΚΥΡΙΩΣ ΣΕΛΙΔΑ === -->
+<div class="main-container">
+    <header>
+        <div class="header-left">
+            <div class="hero-text">
+                <h1>Αρχαία Τραγωδία Lore</h1>
+                <p>Το Απόλυτο Drama Guide για Newbies 💅</p>
+            </div>
+            
+            <!-- ΠΕΡΙΟΧΗ ΚΟΥΜΠΙΩΝ: Το Recap Modal και Το Link για το νέο HTML -->
+            <div class="header-buttons">
+                <button id="openRecapBtn" class="recap-btn">Recap 📸</button>
+                <a href="tragedies_list.html" class="list-btn">Οι 32 Τραγωδίες 🎭</a>
+                <a href="https://youtu.be/JScOZbNROWY" class="list-btn youtube-btn" target="_blank" rel="noopener noreferrer">▶ YouTube</a>
+            </div>
+
+        </div>
+        <div class="logo-box">
+            <img src="logo_GR.png" alt="Logo">
+        </div>
+    </header>
+
+    <section class="cyan-section">
+        <h2>🎬 Ο Ορισμός της Τραγωδίας</h2>
+        <div class="ancient-box">
+            <p class="ancient-text">«Ἔστιν οὖν τραγῳδία μίμησις πράξεως σπουδαίας καὶ τελείας, μέγεθος ἐχούσης, ἡδυσμένῳ λόγῳ, χωρὶς ἑκάστῳ τῶν εἰδῶν ἐν τοῖς μορίοις, δρώντων καὶ οὐ δι' ἀπαγγελίας, δι' ἐλέου καὶ φόβου περαίνουσα τὴν τῶν τοιούτων παθημάτων κάθαρσιν.»</p>
+            <p class="modern-text"><strong>Με απλά λόγια:</strong> Είναι μια σοβαρή, ολοκληρωμένη και επιβλητική αναπαράσταση δράσης, που χρησιμοποιεί ρυθμικό λόγο (μέλος), παρουσιάζεται από ηθοποιούς (δρώντες) και επιφέρει την κάθαρση των παθημάτων (ελέου και φόβου).</p>
+        </div>
+        <p><strong>Οι VIPs (Πρωταγωνιστές):</strong> Οι ήρωες έχουν Main Character Energy—είναι συνήθως βασιλιάδες, ημίθεοι ή πρόσωπα από τη μυθολογία.</p>
+        <p><strong>Ο Στόχος:</strong> Σκοπός της τραγωδίας δεν είναι μόνο να πει μια ιστορία, αλλά και να συγκινήσει και να προβληματίσει τον θεατή.</p>
+    </section>
+
+    <section class="lime-section bg-lime">
+        <h2>✨ Το "Μαγικό" Συναίσθημα (Βασικές Έννοιες)</h2>
+        <div class="grid-container">
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Μίμησις<br>(Virtual Reality)</div>
+                    <div class="flip-card-back">Η τραγωδία είναι μίμηση ανθρώπινων πράξεων. Δεν αντιγράφει απλά τη ζωή, αλλά τη δείχνει με καλλιτεχνικό και θεατρικό τρόπο.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Κάθαρσις<br>(Η Ανακούφιση)</div>
+                    <div class="flip-card-back">Αφού νιώσεις φόβο και λύπη για τον ήρωα, στο τέλος έρχεται η ψυχική ανακούφιση. Το απόλυτο emotional cleanse!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="orange-section bg-orange">
+        <h2>🎞️ Σενάριο & Ειδικά Εφέ (Κατά Ποιόν)</h2>
+        <div class="grid-container">
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Μύθος (Το Σενάριο)</div>
+                    <div class="flip-card-back">Η πλοκή και ο τρόπος που συνδέονται τα γεγονότα. Θεωρείται η «ψυχή» της τραγωδίας.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Ήθος (Οι Χαρακτήρες)</div>
+                    <div class="flip-card-back">Ο χαρακτήρας των προσώπων. Φαίνεται από τα λόγια, τις πράξεις τους και το αν οι επιλογές τους είναι σωστές ή λανθασμένες.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Διάνοια (Τα Μηνύματα)</div>
+                    <div class="flip-card-back">Οι σκέψεις και τα επιχειρήματα των προσώπων. Τα μηνύματα που θέλει να περάσει το έργο.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Λέξις<br>(Το Στυλ των Διαλόγων)</div>
+                    <div class="flip-card-back">Η γλώσσα και το ύφος του έργου.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Μελοποιία (Το Soundtrack)</div>
+                    <div class="flip-card-back">Το μουσικό στοιχείο της τραγωδίας, κυρίως στα χορικά μέρη.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Όψις (Τα Εφέ/Κοστούμια)</div>
+                    <div class="flip-card-back">Ό,τι βλέπει ο θεατής: κοστούμια, μάσκες (προσωπεία) και η σκηνική εικόνα.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="magenta-section bg-magenta">
+        <h2>⏱️ Timeline Επεισοδίου (Κατά Ποσόν)</h2>
+        <div class="grid-container">
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Πρόλογος (Το Intro)</div>
+                    <div class="flip-card-back">Πριν μπει ο Χορός. Μας δίνει το απαραίτητο background info για να καταλάβουμε την υπόθεση.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Πάροδος<br>(Η Εντυπωσιακή Είσοδος)</div>
+                    <div class="flip-card-back">Η πρώτη είσοδος του Χορού στην ορχήστρα. Η στιγμή που μπαίνουν στο παιχνίδι!</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Επεισόδια (Η Κυρίως Δράση)</div>
+                    <div class="flip-card-back">Εκεί που γίνεται το κυρίως action, οι συγκρούσεις και η εξέλιξη της πλοκής.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Στάσιμα<br>(Τα Μουσικά Διαλείμματα)</div>
+                    <div class="flip-card-back">Τα τραγούδια του Χορού ανάμεσα στη δράση. Σχολιάζουν τα γεγονότα και εκφράζουν τα συναισθήματά τους.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Έξοδος (Το Φινάλε)</div>
+                    <div class="flip-card-back">Το τελευταίο μέρος. Εκεί ολοκληρώνεται η υπόθεση και τελειώνει το έργο!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="purple-section bg-purple">
+        <h2>⚔️ Λεκτικές Μονομαχίες & Σόλο (Μορφές Λόγου)</h2>
+        <div class="grid-container">
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Στιχομυθία (Ο Γρήγορος Διάλογος)</div>
+                    <div class="flip-card-back">Γρήγορος διάλογος, όπου οι ήρωες μιλούν εναλλάξ από έναν στίχο. Δείχνει τεράστια ένταση και σύγκρουση!</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Αντιλαβή (Ο Μοιρασμένος Στίχος)</div>
+                    <div class="flip-card-back">Όταν ένας στίχος μοιράζεται σε δύο ομιλητές. Κάνει τη σκηνή σούπερ γρήγορη και γεμάτη ένταση!</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Ρήση (Ο Μεγάλος Μονόλογος)</div>
+                    <div class="flip-card-back">Μεγάλος συνεχόμενος λόγος. Χρησιμοποιείται για αφήγηση, εξήγηση ή επιχειρηματολογία.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Μονωδία (Το Σόλο)</div>
+                    <div class="flip-card-back">Λυρικό μέρος από ένα μόνο πρόσωπο που εκφράζει βαθιά συναισθήματα, πόνο ή θρήνο.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Αμοιβαίο (Το Ντουέτο)</div>
+                    <div class="flip-card-back">Λυρικός διάλογος ανάμεσα σε δύο πλευρές, συνήθως ανάμεσα στον Χορό και σε κάποιον ήρωα.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Κομμός<br>(Το Δραματικό Μοιρολόι)</div>
+                    <div class="flip-card-back">Θρηνητικός διάλογος μεταξύ ήρωα και Χορού. Σκηνή που εκφράζει βαθιά λύπη.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cyan-section">
+        <h2>👥 Οι "Σχολιαστές" (Ο Χορός)</h2>
+        <p>Σκέψου τον Χορό σαν τη φωνή του κοινού ή τους σχολιαστές σε έναν αγώνα. Δεν τραγουδούν απλώς, αλλά:</p>
+        <ul>
+            <li>Σχολιάζουν τα γεγονότα που συμβαίνουν στη σκηνή.</li>
+            <li>Εκφράζουν τα συναισθήματα και τις σκέψεις των θεατών.</li>
+            <li>Επηρεάζουν και χτίζουν το κλίμα του έργου.</li>
+            <li>Σε βοηθούν να καταλάβεις καλύτερα τι κρύβεται πίσω από την υπόθεση.</li>
+        </ul>
+    </section>
+
+    <section class="lime-section bg-cyan">
+        <h2>🕵️ Backstage Μυστικά</h2>
+        <div class="grid-container">
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Σκηνικά με... λόγια<br>(Η σκηνική εικόνα)</div>
+                    <div class="flip-card-back">Δεν υπήρχαν ρεαλιστικά σκηνικά. Ο ποιητής χρησιμοποιεί λέξεις για να σου περιγράψει πώς εμφανίζονται και πώς κινούνται τα πρόσωπα.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Ο Κανόνας του 24ώρου<br>(Η ενότητα του χρόνου)</div>
+                    <div class="flip-card-back">Η βασική δράση του έργου εξελίσσεται συνήθως μέσα σε μία μέρα.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Off-screen Δράση<br>(Ο εξωσκηνικός χώρος)</div>
+                    <div class="flip-card-back">Σημαντικά γεγονότα (όπως μάχες) γίνονται εκτός σκηνής και τα μαθαίνουμε από αγγελιαφόρους (σαν "ρεπόρτερ" της εποχής).</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Ο Παρεξηγημένος<br>(Ο τραγικός ήρωας)</div>
+                    <div class="flip-card-back">Δεν είναι εντελώς κακός, ούτε απόλυτα αθώος. Οδηγείται στη δυστυχία εξαιτίας ενός σοβαρού λάθους ή από άγνοια.</div>
+                </div>
+            </div>
+            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front">Το S.O.S. της εποχής<br>(Η ικεσία)</div>
+                    <div class="flip-card-back">Είναι η απεγνωσμένη έκκληση για βοήθεια ή προστασία, συνήθως σε κάποιον ιερό χώρο.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        Δημιουργία: Παναγιώτης Δόμβρος, Εκπαιδευτικός Αγγλικής Γλώσσας & Θεατρολόγος | Διευθυντής 1ου Γυμνασίου Πυλαίας.
+    </footer>
+</div>
+
+<!-- ==========================================
+     === MODAL: RECAP (CAROUSEL OVERLAY) === 
+     ========================================== -->
+<div id="recapModal" class="recap-modal">
+    <button id="closeRecapBtn" class="close-recap-btn">✖ Επιστροφή</button>
+    
+    <div class="logo-overlay">
+        <img src="logo_GR.png" alt="Λογότυπο">
+    </div>
+
+    <div class="layout-wrapper">
+        <div class="carousel-modal-container" id="carousel">
+            <div class="slide active"><img src="1.png" alt="Σκηνή 1"></div>
+            <div class="slide"><img src="2.png" alt="Σκηνή 2"></div>
+            <div class="slide"><img src="3.png" alt="Σκηνή 3"></div>
+            <div class="slide"><img src="4.png" alt="Σκηνή 4"></div>
+            <div class="slide"><img src="5.png" alt="Σκηνή 5"></div>
+            <div class="slide"><img src="6.png" alt="Σκηνή 6"></div>
+        </div>
+
+        <div class="controls-bar">
+            <button id="zoomBtn">🔍 Μεγέθυνση</button>
+            <button id="nextBtn">Επόμενη ➔</button>
+        </div>
+    </div>
+</div>
+
+<!-- === JAVASCRIPT === -->
+<script>
+    /* Λειτουργίες για το άνοιγμα/κλείσιμο του Modal Recap */
+    const recapModal = document.getElementById('recapModal');
+    const openRecapBtn = document.getElementById('openRecapBtn');
+    const closeRecapBtn = document.getElementById('closeRecapBtn');
+
+    openRecapBtn.addEventListener('click', () => {
+        recapModal.classList.add('active');
+        document.body.style.overflow = 'hidden'; 
+    });
+
+    closeRecapBtn.addEventListener('click', () => {
+        recapModal.classList.remove('active');
+        document.body.style.overflow = 'auto'; 
+    });
+
+    /* Λειτουργίες του Carousel (Μέσα στο Modal) */
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const container = document.getElementById('carousel');
+    const zoomBtn = document.getElementById('zoomBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    let isZoomed = false;
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+        
+        if (isZoomed) {
+            toggleZoom();
+        }
+        
+        container.scrollTop = 0;
+        container.scrollLeft = 0;
+    }
+
+    function toggleZoom() {
+        isZoomed = !isZoomed;
+        if (isZoomed) {
+            container.classList.add('zoomed');
+            zoomBtn.innerHTML = '🔍 Σμίκρυνση';
+        } else {
+            container.classList.remove('zoomed');
+            zoomBtn.innerHTML = '🔍 Μεγέθυνση';
+        }
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    zoomBtn.addEventListener('click', toggleZoom);
+
+    slides.forEach(slide => {
+        slide.querySelector('img').addEventListener('click', function() {
+            if (!isZoomed) {
+                nextSlide();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

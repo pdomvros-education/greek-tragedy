@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ancient Greek Tragedy | Visuals</title>
+    
+    <style>
+        /* Βασικό Background (Yellow/Black Dots) */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffd600;
+            background-image: radial-gradient(#111 1.5px, transparent 1.5px);
+            background-size: 25px 25px;
+            font-family: sans-serif;
+            overflow: hidden; /* Κρύβουμε το scroll του body, σκρολάρει μόνο το carousel container */
+        }
+
+        /* Wrapper που χωρίζει την οθόνη στην εικόνα (πάνω) και στα κουμπιά (κάτω) */
+        .layout-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Διακριτικό Λογότυπο πάνω δεξιά (πάνω από τις εικόνες) */
+        .logo-overlay {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 1000;
+            pointer-events: none; /* Επιτρέπει το κλικ να περάσει από κάτω του */
+        }
+
+        .logo-overlay img {
+            max-width: 70px;
+            height: auto;
+            filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.3));
+        }
+
+        /* Container των εικόνων */
+        .carousel-container {
+            flex: 1; /* Πιάνει όλο τον διαθέσιμο χώρο πάνω από τα κουμπιά */
+            overflow: auto;
+            position: relative;
+            scroll-behavior: smooth;
+            display: flex; /* Βοηθάει στο κεντράρισμα */
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Το ενεργό Slide */
+        .slide.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.4s ease-in-out;
+            width: 100%;
+        }
+
+        /* Κανονική προβολή (χωράει όλη στην οθόνη χωρίς να κόβεται) */
+        .slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            cursor: pointer;
+        }
+
+        /* --- ΚΑΤΑΣΤΑΣΗ ΜΕΓΕΘΥΝΣΗΣ (ZOOM) --- */
+        .carousel-container.zoomed {
+            display: block; /* Αφαιρούμε το flex για να σκρολάρει φυσιολογικά από την κορυφή */
+        }
+
+        .carousel-container.zoomed .slide.active {
+            display: block;
+            height: auto;
+        }
+
+        .carousel-container.zoomed .slide img {
+            width: 100%; /* ΑΚΡΙΒΩΣ το μέγεθος της οθόνης για να μη χάνουμε τις άκρες */
+            max-width: 100%;
+            max-height: none;
+            height: auto;
+            object-fit: unset;
+            cursor: auto; 
+        }
+
+        /* Μπάρα Ελέγχου ΑΥΣΤΗΡΑ ΚΑΤΩ από την εικόνα */
+        .controls-bar {
+            background-color: #ffd600;
+            border-top: 4px solid #111;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 1000;
+            flex-shrink: 0; /* Αποτρέπει τη συρρίκνωση της μπάρας */
+        }
+
+        .controls-bar button {
+            background-color: #fff;
+            color: #111;
+            border: 3px solid #111;
+            box-shadow: 4px 4px 0px #111;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .controls-bar button:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #111;
+        }
+
+        /* Animation εμφάνισης */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-overlay">
+        <img src="logo_GR.png" alt="Λογότυπο">
+    </div>
+
+    <!-- Το κεντρικό Wrapper (Εικόνα Πάνω / Κουμπιά Κάτω) -->
+    <div class="layout-wrapper">
+        
+        <!-- Περιοχή Εικόνων -->
+        <div class="carousel-container" id="carousel">
+            <div class="slide active"><img src="1.png" alt="Σκηνή 1"></div>
+            <div class="slide"><img src="2.png" alt="Σκηνή 2"></div>
+            <div class="slide"><img src="3.png" alt="Σκηνή 3"></div>
+            <div class="slide"><img src="4.png" alt="Σκηνή 4"></div>
+            <div class="slide"><img src="5.png" alt="Σκηνή 5"></div>
+            <div class="slide"><img src="6.png" alt="Σκηνή 6"></div>
+        </div>
+
+        <!-- Περιοχή Κουμπιών -->
+        <div class="controls-bar">
+            <button id="zoomBtn">🔍 Μεγέθυνση</button>
+            <button id="nextBtn">Επόμενη ➔</button>
+        </div>
+
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const container = document.getElementById('carousel');
+        const zoomBtn = document.getElementById('zoomBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let isZoomed = false;
+
+        // Συνάρτηση για αλλαγή εικόνας (μόνο με κλικ, χωρίς αυτόματη εναλλαγή)
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+            
+            // Αν είναι σε μεγέθυνση, την ακυρώνουμε για την επόμενη εικόνα
+            if (isZoomed) {
+                toggleZoom();
+            }
+            
+            // Επαναφορά του scroll στην αρχή
+            container.scrollTop = 0;
+            container.scrollLeft = 0;
+        }
+
+        // Συνάρτηση για λειτουργία Μεγέθυνσης / Σμίκρυνσης
+        function toggleZoom() {
+            isZoomed = !isZoomed;
+            if (isZoomed) {
+                container.classList.add('zoomed');
+                zoomBtn.innerHTML = '🔍 Σμίκρυνση';
+            } else {
+                container.classList.remove('zoomed');
+                zoomBtn.innerHTML = '🔍 Μεγέθυνση';
+            }
+        }
+
+        // Αλλαγή εικόνας κάνοντας κλικ στο κουμπί "Επόμενη"
+        nextBtn.addEventListener('click', nextSlide);
+
+        // Μεγέθυνση κάνοντας κλικ στο κουμπί
+        zoomBtn.addEventListener('click', toggleZoom);
+
+        // Συντόμευση: Αλλαγή εικόνας κάνοντας κλικ ΠΑΝΩ στην ίδια την εικόνα 
+        // (Δουλεύει μόνο όταν ΔΕΝ είμαστε σε μεγέθυνση)
+        slides.forEach(slide => {
+            slide.querySelector('img').addEventListener('click', function() {
+                if (!isZoomed) {
+                    nextSlide();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -236,14 +236,274 @@
             box-shadow: 0px 0px 0px rgba(0,0,0,0.3);
         }
 
+    
+
+        /* === RESPONSIVE + SMARTBOARD ENHANCEMENTS === */
+        * { box-sizing: border-box; }
+
+        img { max-width: 100%; height: auto; }
+
+        .top-controls {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .control-group {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 54px;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            border-radius: 12px;
+            border: 3px solid #111;
+            box-shadow: 4px 4px 0px #111;
+            transition: all 0.12s ease;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            background: #fff;
+            color: #111;
+        }
+
+        .action-btn:active,
+        .action-btn.active {
+            transform: translate(4px, 4px);
+            box-shadow: 0px 0px 0px #111;
+        }
+
+        .smartboard-btn {
+            background: #00f0ff;
+        }
+
+        .accordion-btn,
+        .back-btn,
+        .flip-card,
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .accordion-btn:focus-visible,
+        .back-btn:focus-visible,
+        .action-btn:focus-visible,
+        .flip-card:focus-visible {
+            outline: 4px solid #111;
+            outline-offset: 3px;
+        }
+
+        .accordion-btn {
+            min-height: 78px;
+            font-size: clamp(1.15rem, 2vw, 1.5rem);
+            gap: 14px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+        }
+
+        .hero-text p {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+        }
+
+        .intro-text {
+            font-size: clamp(1rem, 2.2vw, 1.15rem);
+        }
+
+        .flip-card {
+            min-height: 250px;
+            height: 250px;
+        }
+
+        .flip-card-front {
+            font-size: clamp(1.1rem, 2.4vw, 1.4rem);
+        }
+
+        .flip-card-back {
+            font-size: clamp(0.95rem, 1.9vw, 1rem);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .status-note {
+            margin: 0 0 10px 0;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        body.smartboard-mode .main-container {
+            max-width: 1400px;
+            padding: 36px 24px 54px;
+        }
+
+        body.smartboard-mode .hero-text h1 {
+            font-size: clamp(2.6rem, 5vw, 3.8rem);
+        }
+
+        body.smartboard-mode .hero-text p,
+        body.smartboard-mode .intro-text,
+        body.smartboard-mode .status-note {
+            font-size: 1.25rem;
+        }
+
+        body.smartboard-mode .accordion-btn {
+            min-height: 94px;
+            font-size: clamp(1.5rem, 2.3vw, 2rem);
+            padding: 24px 28px;
+        }
+
+        body.smartboard-mode .grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        body.smartboard-mode .flip-card {
+            height: 300px;
+            min-height: 300px;
+        }
+
+        body.smartboard-mode .flip-card-front {
+            font-size: 1.6rem;
+        }
+
+        body.smartboard-mode .flip-card-back {
+            font-size: 1.08rem;
+        }
+
+        body.smartboard-mode .back-btn,
+        body.smartboard-mode .action-btn {
+            min-height: 64px;
+            font-size: 1.1rem;
+            padding: 14px 24px;
+        }
+
+        @media (max-width: 900px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 18px;
+            }
+
+            .logo-box {
+                align-self: center;
+            }
+        }
+
+        @media (max-width: 700px) {
+            body {
+                line-height: 1.5;
+            }
+
+            .main-container {
+                padding: 22px 14px 34px;
+            }
+
+            .top-controls,
+            .control-group {
+                width: 100%;
+            }
+
+            .top-controls {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+            }
+
+            .control-group {
+                justify-content: stretch;
+                flex-direction: column;
+            }
+
+            .back-btn,
+            .action-btn {
+                width: 100%;
+                margin-bottom: 0;
+                min-height: 56px;
+                padding: 14px 18px;
+                font-size: 1rem;
+            }
+
+            header,
+            .intro-box,
+            .accordion-btn,
+            .flip-card-front,
+            .flip-card-back {
+                border-width: 3px;
+                box-shadow: 4px 4px 0px #111;
+            }
+
+            header {
+                padding: 20px;
+                margin-bottom: 28px;
+                border-radius: 18px;
+            }
+
+            .intro-box {
+                padding: 18px;
+                margin-bottom: 26px;
+            }
+
+            .accordion-btn {
+                padding: 16px 18px;
+                margin-bottom: 14px;
+                border-radius: 14px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .flip-card {
+                height: 220px;
+                min-height: 220px;
+            }
+
+            .flip-card-front,
+            .flip-card-back {
+                padding: 18px;
+            }
+
+            .note-text {
+                font-size: 0.78rem;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .hero-text h1 {
+                letter-spacing: -0.5px;
+            }
+
+            .flip-card {
+                height: 230px;
+            }
+        }
+
     </style>
 </head>
 <body>
 
 <div class="main-container">
     
-    <!-- Έτοιμο κουμπί για όταν το συνδέσουμε με την αρχική σελίδα -->
-    <a href="index.html" class="back-btn">⬅ Επιστροφή στην Αρχική</a>
+    <div class="top-controls">
+        <a href="index.html" class="back-btn action-btn">⬅ Επιστροφή στην Αρχική</a>
+        <div class="control-group">
+            <button id="expandAllBtn" class="action-btn" type="button">📂 Άνοιγμα όλων</button>
+            <button id="smartboardBtn" class="action-btn smartboard-btn" type="button" aria-pressed="false">🖥️ Smartboard Mode</button>
+        </div>
+    </div>
 
     <header>
         <div class="hero-text">
@@ -261,6 +521,8 @@
         </p>
     </div>
 
+    <p class="status-note">Tip: Σε κινητό πάτησε τις κάρτες για αναστροφή. Σε smartboard ενεργοποίησε το <strong>Smartboard Mode</strong> για μεγαλύτερα στοιχεία.</p>
+
     <!-- ========================================== -->
     <!-- 1. ΑΙΣΧΥΛΟΣ -->
     <!-- ========================================== -->
@@ -270,31 +532,31 @@
             <strong>Γενική σημείωση:</strong> Από τα έργα του Αισχύλου, τα <em>Αγαμέμνων</em>, <em>Χοηφόροι</em> και <em>Ευμενίδες</em> συγκροτούν την <strong>Ορέστεια</strong>, τη μοναδική πλήρως σωζόμενη αρχαία τριλογία.
         </div>
         <div class="grid-container">
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Πέρσες</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Παρουσιάζει τη συντριβή των Περσών στη Σαλαμίνα μέσα από το βλέμμα της περσικής αυλής και όχι των Ελλήνων νικητών.</p><p class="note-text">Σημείωση: Είναι η αρχαιότερη σωζόμενη ελληνική τραγωδία (αντλεί το θέμα από πρόσφατη ιστορία, όχι τον μύθο).</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Επτά επί Θήβας</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ετεοκλής οργανώνει την άμυνα της Θήβας απέναντι στον Πολυνείκη. Η σύγκρουση κορυφώνεται με τον αλληλοσκοτωμό των αδελφών.</p><p class="note-text">Σημείωση: Το μόνο σωζόμενο έργο θηβαϊκής τριλογίας (δεν ανήκει στην Ορέστεια).</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ικέτιδες</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Οι Δαναΐδες φτάνουν ως ικέτιδες στο Άργος για να γλιτώσουν από εξαναγκαστικό γάμο με τους Αιγυπτιάδες.</p><p class="note-text">Σημείωση: Το μόνο σωζόμενο μέρος της ομώνυμης τριλογίας.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Αγαμέμνων</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Αγαμέμνονας επιστρέφει από την Τροία μαζί με την Κασσάνδρα, αλλά πέφτει θύμα της εκδίκησης της Κλυταιμνήστρας και του Αίγισθου.</p><p class="note-text">Σημείωση: 1ο έργο της Ορέστειας.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Χοηφόροι</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ορέστης επιστρέφει στο Άργος, συναντά την Ηλέκτρα και δολοφονεί τον Αίγισθο και την Κλυταιμνήστρα (μητροκτονία).</p><p class="note-text">Σημείωση: 2ο έργο της Ορέστειας.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ευμενίδες</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ορέστης, κυνηγημένος από τις Ερινύες, δικάζεται στον Άρειο Πάγο της Αθήνας με την παρέμβαση της Αθηνάς.</p><p class="note-text">Σημείωση: 3ο έργο της Ορέστειας (μετατρέπει την εκδίκηση σε θεσμοθετημένη δικαιοσύνη).</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Προμηθέας Δεσμώτης</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Προμηθέας αλυσοδένεται από τον Δία επειδή χάρισε στους ανθρώπους τη φωτιά. Αναμετρά την εξουσία με την αδάμαστη αντοχή.</p><p class="note-text">Σημείωση: Η πατρότητά του αμφισβητείται από μέρος της νεότερης έρευνας.</p></div></div>
             </div>
@@ -307,31 +569,31 @@
     <button class="accordion-btn acc-sophocles">2. Σοφοκλής (7 έργα) <span class="icon">▼</span></button>
     <div class="accordion-panel panel-sophocles">
         <div class="grid-container">
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Αίας</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Αίας χάνει τα όπλα του Αχιλλέα, χάνει την κρίση του και εξευτελίζεται. Όταν συνέρχεται, επιλέγει την αυτοκτονία.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Αντιγόνη</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Αντιγόνη παραβαίνει την εντολή του Κρέοντα και θάβει τον αδελφό της Πολυνείκη, υπακούοντας σε ανώτερους άγραφους νόμους.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Τραχίνιαι</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Δηιάνειρα στέλνει στον Ηρακλή έναν χιτώνα με υποτιθέμενο φίλτρο αγάπης, το οποίο αποδεικνύεται θανατηφόρο δηλητήριο.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Οιδίπους Τύραννος</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ψάχνοντας τον αίτιο του λοιμού στη Θήβα, ο Οιδίποδας ανακαλύπτει ότι ο ίδιος είναι ο φονιάς του πατέρα του και σύζυγος της μητέρας του.</p><p class="note-text">Σημείωση: Κλασικό παράδειγμα τραγικής αναγνώρισης και ειρωνείας.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ηλέκτρα</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Ηλέκτρα περιμένει τον Ορέστη και μαζί εκτελούν την εκδίκηση εναντίον της Κλυταιμνήστρας και του Αίγισθου.</p><p class="note-text">Σημείωση: Σοφόκλεια εκδοχή, ανεξάρτητη από την Ορέστεια.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Φιλοκτήτης</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Οι Έλληνες προσπαθούν με δόλο να πάρουν το τόξο του άρρωστου Φιλοκτήτη. Αντιπαραθέτει τη δόλια πολιτική με την ηθική (Νεοπτόλεμος).</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Οιδίπους επί Κολωνώ</div>
                 <div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο τυφλός και εξόριστος Οιδίποδας φτάνει στον Κολωνό. Το έργο μετατρέπει τον καταραμένο βασιλιά σε ιερή μορφή προστασίας.</p></div></div>
             </div>
@@ -344,58 +606,58 @@
     <button class="accordion-btn acc-euripides">3. Ευριπίδης (18 έργα) <span class="icon">▼</span></button>
     <div class="accordion-panel panel-euripides">
         <div class="grid-container">
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Άλκηστις</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Άλκηστη προσφέρεται να πεθάνει στη θέση του Άδμητου. Ο Ηρακλής παλεύει με τον θάνατο και την επαναφέρει.</p><p class="note-text">Σημείωση: Παρουσιάστηκε στη θέση του σατυρικού δράματος (happy end).</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Μήδεια</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Προδομένη από τον Ιάσονα, η Μήδεια παίρνει ακραία εκδίκηση φτάνοντας ως τον φόνο της αντιζήλου της και των ίδιων της των παιδιών.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ηρακλείδαι</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Τα παιδιά του Ηρακλή ζητούν άσυλο στην Αθήνα. Το έργο προβάλλει την Αθήνα ως πόλη προστασίας των αδυνάτων.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ιππόλυτος</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Αφροδίτη τιμωρεί τον Ιππόλυτο κάνοντας τη μητριά του, Φαίδρα, να τον ερωτευτεί, γεγονός που οδηγεί στον θάνατό του.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ανδρομάχη</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Ανδρομάχη βρίσκεται αιχμάλωτη στη Θεσσαλία, παγιδευμένη σε εντάσεις, ζήλια και σχεδιαζόμενους φόνους.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Εκάβη</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Από πενθούσα βασίλισσα της Τροίας, μετατρέπεται σε σκληρή τιμωρό για να εκδικηθεί τον δολοφόνο του γιου της.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ικέτιδες</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Μητέρες Αργείων ζητούν από την Αθήνα να εξασφαλίσει τα άταφα σώματα των παιδιών τους.</p><p class="note-text">Σημείωση: Δεν πρέπει να συγχέεται με τις Ικέτιδες του Αισχύλου.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ηλέκτρα</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Ηλέκτρα ζει φτωχικά. Όταν έρχεται ο Ορέστης, σκοτώνουν τη μητέρα τους, αλλά στο τέλος κυριαρχεί η ενοχή.</p><p class="note-text">Σημείωση: Πιο αντιηρωική εκδοχή του μύθου.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ηρακλής μαινόμενος</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ηρακλής σώζει την οικογένειά του, αλλά η Ήρα τον χτυπά με μανία και τους σκοτώνει. Μετά πρέπει να ζήσει με αυτό το βάρος.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Τρωάδες</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Οι αιχμάλωτες γυναίκες της Τροίας περιμένουν τη μοίρα τους. Αποτυπώνει τη φρίκη του πολέμου.</p><p class="note-text">Σημείωση: Από τα εντονότερα αντιπολεμικά κείμενα της αρχαιότητας.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ίων</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Κρέουσα φτάνει στους Δελφούς, όπου μέσω παρανοήσεων αναγνωρίζει τελικά τον χαμένο γιο της, Ίωνα.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ιφιγένεια εν Ταύροις</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η Ιφιγένεια (ιέρεια) αναγνωρίζει τον αδελφό της Ορέστη (που προοριζόταν για θυσία) και δραπετεύουν μαζί.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ελένη</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Ευριπίδης ανατρέπει τον μύθο: Στην Τροία πήγε ένα είδωλο, η Ελένη ήταν στην Αίγυπτο όπου την βρίσκει ο Μενέλαος.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Φοίνισσαι</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Η τελική σύγκρουση του θηβαϊκού οίκου: Αλληλοσφαγή Ετεοκλή-Πολυνείκη και αυτοκτονία της Ιοκάστης.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ορέστης</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Μετά τη μητροκτονία, τα δύο αδέλφια οδηγούνται σε νέα σχέδια βίας από απόγνωση, ώσπου επεμβαίνει θεός.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ιφιγένεια εν Αυλίδι</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Αγαμέμνονας καλεί την κόρη του στην Αυλίδα δήθεν για γάμο, αλλά στην πραγματικότητα για να τη θυσιάσει.</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Βάκχες</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Ο Διόνυσος επιστρέφει στη Θήβα, τιμωρεί την άρνηση του Πενθέα και τον οδηγεί στον διαμελισμό από τις μαινάδες (και τη μητέρα του).</p></div></div>
             </div>
-            <div class="flip-card" onclick="this.classList.toggle('is-flipped')">
+            <div class="flip-card" tabindex="0" role="button" aria-pressed="false" onclick="toggleCard(this)">
                 <div class="flip-card-inner"><div class="flip-card-front">Ρήσος</div><div class="flip-card-back"><p><strong>Σύνοψη:</strong> Νυχτερινή επιδρομή στο τρωικό στρατόπεδο και αιφνιδιαστική δολοφονία του Θράκα συμμάχου Ρήσου.</p><p class="note-text">Σημείωση: Αμφισβητούμενη πατρότητα, πολλοί το θεωρούν μεταγενέστερο.</p></div></div>
             </div>
         </div>
@@ -404,22 +666,67 @@
 </div>
 
 <script>
-    // Λειτουργία για το άνοιγμα/κλείσιμο των Accordions
     const accordions = document.querySelectorAll('.accordion-btn');
-    
-    accordions.forEach(acc => {
+    const expandAllBtn = document.getElementById('expandAllBtn');
+    const smartboardBtn = document.getElementById('smartboardBtn');
+    const body = document.body;
+
+    function setAccordionState(button, open) {
+        const panel = button.nextElementSibling;
+        button.classList.toggle('active', open);
+        button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        panel.style.display = open ? 'block' : 'none';
+    }
+
+    accordions.forEach((acc, index) => {
+        acc.setAttribute('aria-expanded', 'false');
+        acc.setAttribute('aria-controls', `panel-${index}`);
+        const panel = acc.nextElementSibling;
+        panel.id = `panel-${index}`;
+        panel.setAttribute('role', 'region');
+        panel.setAttribute('aria-label', acc.textContent.trim());
+
         acc.addEventListener('click', function() {
-            // Κλείνουμε όλα τα άλλα αν θέλουμε (προαιρετικό, εδώ τα αφήνουμε ανεξάρτητα)
-            this.classList.toggle('active');
-            
-            const panel = this.nextElementSibling;
-            if (panel.style.display === 'block') {
-                panel.style.display = 'none';
-            } else {
-                panel.style.display = 'block';
+            const isOpen = this.nextElementSibling.style.display === 'block';
+            setAccordionState(this, !isOpen);
+            syncExpandButton();
+        });
+    });
+
+    function syncExpandButton() {
+        const allOpen = [...accordions].every(acc => acc.nextElementSibling.style.display === 'block');
+        expandAllBtn.textContent = allOpen ? '📁 Κλείσιμο όλων' : '📂 Άνοιγμα όλων';
+        expandAllBtn.setAttribute('aria-pressed', allOpen ? 'true' : 'false');
+    }
+
+    expandAllBtn.addEventListener('click', () => {
+        const allOpen = [...accordions].every(acc => acc.nextElementSibling.style.display === 'block');
+        accordions.forEach(acc => setAccordionState(acc, !allOpen));
+        syncExpandButton();
+    });
+
+    smartboardBtn.addEventListener('click', () => {
+        body.classList.toggle('smartboard-mode');
+        const enabled = body.classList.contains('smartboard-mode');
+        smartboardBtn.classList.toggle('active', enabled);
+        smartboardBtn.setAttribute('aria-pressed', enabled ? 'true' : 'false');
+    });
+
+    function toggleCard(card) {
+        const isFlipped = card.classList.toggle('is-flipped');
+        card.setAttribute('aria-pressed', isFlipped ? 'true' : 'false');
+    }
+
+    document.querySelectorAll('.flip-card').forEach(card => {
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleCard(card);
             }
         });
     });
+
+    syncExpandButton();
 </script>
 
 </body>

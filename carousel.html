@@ -2,53 +2,97 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Ancient Greek Tragedy | Visuals</title>
-    
+
     <style>
-        /* Βασικό Background (Yellow/Black Dots) */
-        body, html {
+        :root {
+            --bg: #ffd600;
+            --ink: #111;
+            --paper: #fff;
+            --shadow: 4px 4px 0px var(--ink);
+            --radius: 12px;
+            --gap: 14px;
+            --control-font: clamp(1rem, 1.5vw, 1.15rem);
+            --control-pad-y: 12px;
+            --control-pad-x: 20px;
+            --logo-size: 70px;
+            --controls-padding: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background-color: #ffd600;
-            background-image: radial-gradient(#111 1.5px, transparent 1.5px);
+            background-color: var(--bg);
+            background-image: radial-gradient(var(--ink) 1.5px, transparent 1.5px);
             background-size: 25px 25px;
-            font-family: sans-serif;
-            overflow: hidden; /* Κρύβουμε το scroll του body, σκρολάρει μόνο το carousel container */
+            font-family: Arial, Helvetica, sans-serif;
+            overflow: hidden;
+            color: var(--ink);
         }
 
-        /* Wrapper που χωρίζει την οθόνη στην εικόνα (πάνω) και στα κουμπιά (κάτω) */
+        body.smartboard-mode {
+            --control-font: clamp(1.2rem, 1.8vw, 1.45rem);
+            --control-pad-y: 16px;
+            --control-pad-x: 28px;
+            --logo-size: 92px;
+            --controls-padding: 18px;
+        }
+
         .layout-wrapper {
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            height: 100svh;
             width: 100vw;
+            position: relative;
         }
 
-        /* Διακριτικό Λογότυπο πάνω δεξιά (πάνω από τις εικόνες) */
         .logo-overlay {
             position: fixed;
-            top: 15px;
-            right: 15px;
+            top: max(12px, env(safe-area-inset-top));
+            right: max(12px, env(safe-area-inset-right));
             z-index: 1000;
-            pointer-events: none; /* Επιτρέπει το κλικ να περάσει από κάτω του */
+            pointer-events: none;
         }
 
         .logo-overlay img {
-            max-width: 70px;
+            width: min(var(--logo-size), 18vw);
+            max-width: 100%;
             height: auto;
             filter: drop-shadow(1px 2px 4px rgba(0,0,0,0.3));
         }
 
-        /* Container των εικόνων */
+        .status-chip {
+            position: fixed;
+            top: max(12px, env(safe-area-inset-top));
+            left: max(12px, env(safe-area-inset-left));
+            z-index: 1000;
+            background: rgba(255,255,255,0.95);
+            border: 3px solid var(--ink);
+            box-shadow: var(--shadow);
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: clamp(0.95rem, 1.3vw, 1rem);
+            font-weight: 700;
+        }
+
         .carousel-container {
-            flex: 1; /* Πιάνει όλο τον διαθέσιμο χώρο πάνω από τα κουμπιά */
+            flex: 1;
             overflow: auto;
             position: relative;
             scroll-behavior: smooth;
-            display: flex; /* Βοηθάει στο κεντράρισμα */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(20px, 3vw, 36px);
+            padding-top: calc(clamp(20px, 3vw, 36px) + env(safe-area-inset-top));
+            touch-action: pan-y pinch-zoom;
         }
 
         .slide {
@@ -57,26 +101,26 @@
             height: 100%;
         }
 
-        /* Το ενεργό Slide */
         .slide.active {
             display: flex;
             justify-content: center;
             align-items: center;
-            animation: fadeIn 0.4s ease-in-out;
+            animation: fadeIn 0.35s ease-in-out;
             width: 100%;
         }
 
-        /* Κανονική προβολή (χωράει όλη στην οθόνη χωρίς να κόβεται) */
         .slide img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
             cursor: pointer;
+            user-select: none;
+            -webkit-user-drag: none;
+            border-radius: 14px;
         }
 
-        /* --- ΚΑΤΑΣΤΑΣΗ ΜΕΓΕΘΥΝΣΗΣ (ZOOM) --- */
         .carousel-container.zoomed {
-            display: block; /* Αφαιρούμε το flex για να σκρολάρει φυσιολογικά από την κορυφή */
+            display: block;
         }
 
         .carousel-container.zoomed .slide.active {
@@ -85,45 +129,135 @@
         }
 
         .carousel-container.zoomed .slide img {
-            width: 100%; /* ΑΚΡΙΒΩΣ το μέγεθος της οθόνης για να μη χάνουμε τις άκρες */
+            width: 100%;
             max-width: 100%;
             max-height: none;
             height: auto;
             object-fit: unset;
-            cursor: auto; 
+            cursor: auto;
         }
 
-        /* Μπάρα Ελέγχου ΑΥΣΤΗΡΑ ΚΑΤΩ από την εικόνα */
         .controls-bar {
-            background-color: #ffd600;
-            border-top: 4px solid #111;
-            padding: 15px;
+            background-color: var(--bg);
+            border-top: 4px solid var(--ink);
+            padding: var(--controls-padding);
+            padding-left: max(var(--controls-padding), env(safe-area-inset-left));
+            padding-right: max(var(--controls-padding), env(safe-area-inset-right));
+            padding-bottom: max(var(--controls-padding), env(safe-area-inset-bottom));
             display: flex;
             justify-content: center;
-            gap: 15px;
+            gap: var(--gap);
             z-index: 1000;
-            flex-shrink: 0; /* Αποτρέπει τη συρρίκνωση της μπάρας */
+            flex-shrink: 0;
+            flex-wrap: wrap;
         }
 
         .controls-bar button {
-            background-color: #fff;
-            color: #111;
-            border: 3px solid #111;
-            box-shadow: 4px 4px 0px #111;
-            padding: 12px 24px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 8px;
+            background-color: var(--paper);
+            color: var(--ink);
+            border: 3px solid var(--ink);
+            box-shadow: var(--shadow);
+            padding: var(--control-pad-y) var(--control-pad-x);
+            font-size: var(--control-font);
+            font-weight: 800;
+            border-radius: var(--radius);
             cursor: pointer;
-            transition: all 0.1s;
+            transition: transform 0.1s, box-shadow 0.1s, background-color 0.1s;
+            min-height: 52px;
+            min-width: 132px;
+            touch-action: manipulation;
+        }
+
+        .controls-bar button:hover,
+        .controls-bar button:focus-visible {
+            background-color: #fffbe6;
+            outline: none;
         }
 
         .controls-bar button:active {
             transform: translate(4px, 4px);
-            box-shadow: 0px 0px 0px #111;
+            box-shadow: 0px 0px 0px var(--ink);
         }
 
-        /* Animation εμφάνισης */
+        #smartboardBtn.active-toggle {
+            background-color: #00f0ff;
+        }
+
+        #zoomBtn.active-toggle {
+            background-color: #39ff14;
+        }
+
+        .helper-text {
+            position: fixed;
+            bottom: calc(86px + env(safe-area-inset-bottom));
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: rgba(255,255,255,0.95);
+            border: 3px solid var(--ink);
+            box-shadow: var(--shadow);
+            border-radius: 999px;
+            padding: 8px 14px;
+            font-size: clamp(0.9rem, 1.2vw, 0.98rem);
+            font-weight: 700;
+            text-align: center;
+            max-width: min(92vw, 720px);
+        }
+
+        @media (max-width: 900px) {
+            .controls-bar {
+                gap: 10px;
+            }
+
+            .controls-bar button {
+                flex: 1 1 calc(50% - 10px);
+                min-width: 0;
+            }
+
+            .helper-text {
+                bottom: calc(142px + env(safe-area-inset-bottom));
+                width: calc(100vw - 28px);
+                border-radius: 18px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .carousel-container {
+                padding: 14px;
+                padding-top: calc(14px + env(safe-area-inset-top) + 44px);
+            }
+
+            .status-chip {
+                font-size: 0.9rem;
+                padding: 7px 12px;
+            }
+
+            .logo-overlay img {
+                width: min(var(--logo-size), 15vw + 18px);
+            }
+
+            .controls-bar {
+                justify-content: stretch;
+            }
+
+            .controls-bar button {
+                flex: 1 1 100%;
+                width: 100%;
+            }
+
+            .helper-text {
+                bottom: calc(286px + env(safe-area-inset-bottom));
+                font-size: 0.88rem;
+                line-height: 1.35;
+            }
+        }
+
+        @media (pointer: coarse) {
+            .controls-bar button {
+                min-height: 56px;
+            }
+        }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -131,16 +265,14 @@
     </style>
 </head>
 <body>
+    <div class="status-chip" id="slideCounter">1 / 6</div>
 
     <div class="logo-overlay">
         <img src="logo_GR.png" alt="Λογότυπο">
     </div>
 
-    <!-- Το κεντρικό Wrapper (Εικόνα Πάνω / Κουμπιά Κάτω) -->
     <div class="layout-wrapper">
-        
-        <!-- Περιοχή Εικόνων -->
-        <div class="carousel-container" id="carousel">
+        <div class="carousel-container" id="carousel" aria-live="polite">
             <div class="slide active"><img src="1.png" alt="Σκηνή 1"></div>
             <div class="slide"><img src="2.png" alt="Σκηνή 2"></div>
             <div class="slide"><img src="3.png" alt="Σκηνή 3"></div>
@@ -149,12 +281,14 @@
             <div class="slide"><img src="6.png" alt="Σκηνή 6"></div>
         </div>
 
-        <!-- Περιοχή Κουμπιών -->
-        <div class="controls-bar">
-            <button id="zoomBtn">🔍 Μεγέθυνση</button>
-            <button id="nextBtn">Επόμενη ➔</button>
-        </div>
+        <div class="helper-text" id="helperText">Swipe ή πάτησε την εικόνα για επόμενη · Βελάκια πληκτρολογίου για πλοήγηση</div>
 
+        <div class="controls-bar">
+            <button id="prevBtn" type="button">⬅ Προηγούμενη</button>
+            <button id="nextBtn" type="button">Επόμενη ➔</button>
+            <button id="zoomBtn" type="button">🔍 Μεγέθυνση</button>
+            <button id="smartboardBtn" type="button">🖥️ Smartboard Mode</button>
+        </div>
     </div>
 
     <script>
@@ -163,51 +297,113 @@
         const container = document.getElementById('carousel');
         const zoomBtn = document.getElementById('zoomBtn');
         const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const smartboardBtn = document.getElementById('smartboardBtn');
+        const slideCounter = document.getElementById('slideCounter');
+        const helperText = document.getElementById('helperText');
         let isZoomed = false;
+        let touchStartX = 0;
+        let touchEndX = 0;
 
-        // Συνάρτηση για αλλαγή εικόνας (μόνο με κλικ, χωρίς αυτόματη εναλλαγή)
-        function nextSlide() {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + 1) % slides.length;
-            slides[currentSlide].classList.add('active');
-            
-            // Αν είναι σε μεγέθυνση, την ακυρώνουμε για την επόμενη εικόνα
-            if (isZoomed) {
-                toggleZoom();
-            }
-            
-            // Επαναφορά του scroll στην αρχή
+        function updateCounter() {
+            slideCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
+        }
+
+        function resetScroll() {
             container.scrollTop = 0;
             container.scrollLeft = 0;
         }
 
-        // Συνάρτηση για λειτουργία Μεγέθυνσης / Σμίκρυνσης
-        function toggleZoom() {
-            isZoomed = !isZoomed;
+        function setSlide(index) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (index + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+
+            if (isZoomed) {
+                toggleZoom(false);
+            }
+
+            updateCounter();
+            resetScroll();
+        }
+
+        function nextSlide() {
+            setSlide(currentSlide + 1);
+        }
+
+        function prevSlide() {
+            setSlide(currentSlide - 1);
+        }
+
+        function toggleZoom(forceState) {
+            isZoomed = typeof forceState === 'boolean' ? forceState : !isZoomed;
+
             if (isZoomed) {
                 container.classList.add('zoomed');
                 zoomBtn.innerHTML = '🔍 Σμίκρυνση';
+                zoomBtn.classList.add('active-toggle');
+                helperText.textContent = 'Σε μεγέθυνση μπορείς να κάνεις scroll μέσα στην εικόνα';
             } else {
                 container.classList.remove('zoomed');
                 zoomBtn.innerHTML = '🔍 Μεγέθυνση';
+                zoomBtn.classList.remove('active-toggle');
+                helperText.textContent = 'Swipe ή πάτησε την εικόνα για επόμενη · Βελάκια πληκτρολογίου για πλοήγηση';
             }
+            resetScroll();
         }
 
-        // Αλλαγή εικόνας κάνοντας κλικ στο κουμπί "Επόμενη"
+        function toggleSmartboardMode() {
+            document.body.classList.toggle('smartboard-mode');
+            smartboardBtn.classList.toggle('active-toggle');
+        }
+
         nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        zoomBtn.addEventListener('click', () => toggleZoom());
+        smartboardBtn.addEventListener('click', toggleSmartboardMode);
 
-        // Μεγέθυνση κάνοντας κλικ στο κουμπί
-        zoomBtn.addEventListener('click', toggleZoom);
-
-        // Συντόμευση: Αλλαγή εικόνας κάνοντας κλικ ΠΑΝΩ στην ίδια την εικόνα 
-        // (Δουλεύει μόνο όταν ΔΕΝ είμαστε σε μεγέθυνση)
         slides.forEach(slide => {
-            slide.querySelector('img').addEventListener('click', function() {
+            const img = slide.querySelector('img');
+            img.addEventListener('click', function() {
                 if (!isZoomed) {
                     nextSlide();
                 }
             });
         });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight') {
+                nextSlide();
+            } else if (event.key === 'ArrowLeft') {
+                prevSlide();
+            } else if (event.key === 'z' || event.key === 'Z') {
+                toggleZoom();
+            } else if (event.key === 's' || event.key === 'S') {
+                toggleSmartboardMode();
+            }
+        });
+
+        container.addEventListener('touchstart', function(event) {
+            if (event.touches.length === 1) {
+                touchStartX = event.changedTouches[0].screenX;
+            }
+        }, { passive: true });
+
+        container.addEventListener('touchend', function(event) {
+            if (isZoomed) return;
+            touchEndX = event.changedTouches[0].screenX;
+            const deltaX = touchEndX - touchStartX;
+
+            if (Math.abs(deltaX) > 50) {
+                if (deltaX < 0) {
+                    nextSlide();
+                } else {
+                    prevSlide();
+                }
+            }
+        }, { passive: true });
+
+        updateCounter();
     </script>
 </body>
 </html>
